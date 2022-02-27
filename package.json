@@ -1,0 +1,43 @@
+{
+  "name": "@dle.dev/librephotos-client-api",
+  "version": "0.0.0",
+  "description": "Generated Axios (Typescript) API from librephotos backend schema. Currently WIP.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/polaroidkidd/librephotos-client-api.git"
+  },
+  "author": "Daniel Einars <contact@dle.dev>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && rollup -c",
+    "tsc": "tsc"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "axios": "^0.26.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.23",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.68.0",
+    "rollup-plugin-dts": "^4.1.0",
+    "rollup-plugin-esbuild": "^4.8.2",
+    "typescript": "^4.2.4"
+  },
+  "bugs": {
+    "url": "https://github.com/polaroidkidd/librephotos-client-api/issues"
+  },
+  "homepage": "https://github.com/polaroidkidd/librephotos-client-api#readme",
+  "keywords": [
+    "librephotos"
+  ],
+  "main": "dist/librephotos-client-api.js",
+  "module": "dist/librephotos-client-api.mjs",
+  "typings": "dist/librephotos-client-api.d.ts",
+  "packageManager": "yarn@3.2.0",
+  "files": [
+    "dist",
+    "tsconfig.json"
+  ]
+}
