@@ -13,6 +13,24 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface IPhotoHashList
+ */
+export interface IPhotoHashList {
+    /**
+     * 
+     * @type {string}
+     * @memberof IPhotoHashList
+     */
+    'image_hash': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof IPhotoHashList
+     */
+    'video'?: boolean;
+}
+

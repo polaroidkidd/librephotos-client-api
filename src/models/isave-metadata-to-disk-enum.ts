@@ -13,6 +13,20 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ISaveMetadataToDiskEnum = {
+    Off: 'OFF',
+    MediaFile: 'MEDIA_FILE',
+    SidecarFile: 'SIDECAR_FILE'
+} as const;
+
+export type ISaveMetadataToDiskEnum = typeof ISaveMetadataToDiskEnum[keyof typeof ISaveMetadataToDiskEnum];
+
+
+

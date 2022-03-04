@@ -13,6 +13,24 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface ITokenObtainPair
+ */
+export interface ITokenObtainPair {
+    /**
+     * 
+     * @type {string}
+     * @memberof ITokenObtainPair
+     */
+    'username': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ITokenObtainPair
+     */
+    'password': string;
+}
+

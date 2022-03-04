@@ -13,6 +13,24 @@
  */
 
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+
+/**
+ * 
+ * @export
+ * @interface ITokenRefresh
+ */
+export interface ITokenRefresh {
+    /**
+     * 
+     * @type {string}
+     * @memberof ITokenRefresh
+     */
+    'access': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ITokenRefresh
+     */
+    'refresh': string;
+}
+

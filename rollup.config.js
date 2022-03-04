@@ -1,36 +1,52 @@
-import dts from 'rollup-plugin-dts'
-import esbuild from 'rollup-plugin-esbuild'
+import {terser} from "rollup-plugin-terser";
+import pluginTypescript from "@rollup/plugin-typescript";
+import pluginCommonjs from "@rollup/plugin-commonjs";
+import pluginNodeResolve from "@rollup/plugin-node-resolve";
+import {babel} from "@rollup/plugin-babel";
+import * as path from "path";
+import pkg from "./package.json";
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
+const moduleName = pkg.name;
+const inputFileName = "src/index.ts";
+const author = pkg.author;
+const banner = `
+  /**
+   * @license
+   * author: ${author}
+   * ${moduleName}.js v${pkg.version}
+   * Released under the ${pkg.license} license.
+   */
+`;
 
-const name = require('./package.json').main.replace(/\.js$/, '')
-
-const bundle = config => ({
-  ...config,
-  input: 'src/index.ts',
-  external: id => !/^[./]/.test(id),
-})
-
-export default [
-  bundle({
-    plugins: [esbuild()],
+export default {
+    input: inputFileName,
+    preserveModules: true,
     output: [
-      {
-        file: `${name}.js`,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: `${name}.mjs`,
-        format: 'es',
-        sourcemap: true,
-      },
+        {
+            name: moduleName,
+            dir: "./dist",
+            format: "esm",
+            sourcemap: false,
+            banner,
+            plugins: [terser()],
+        },
     ],
-  }),
-  bundle({
-    plugins: [dts()],
-    output: {
-      file: `${name}.d.ts`,
-      format: 'es',
-    },
-  }),
-]
+    plugins: [
+        peerDepsExternal({
+            includeDependencies: false,
+        }),
+        pluginTypescript(),
+        pluginCommonjs({
+            extensions: [".js", ".ts"],
+        }),
+        babel({
+            babelHelpers: "bundled",
+            configFile: path.resolve(__dirname, ".babelrc.js"),
+        }),
+        pluginNodeResolve({
+            browser: true,
+        }),
+    ],
+}
+
