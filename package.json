@@ -9,7 +9,7 @@
   "author": "Daniel Einars <contact@dle.dev>",
   "license": "MIT",
   "scripts": {
-    "generate": "yarn openapi-generator-cli generate -i ./schema.json -g typescript-axios  -o . --skip-validate-spec --additional-properties=withSeparateModelsAndApi=true,modelPackage=models,apiPackage=api,npmName=@dle.dev/librephotos-client-api",
+    "generate": "rimraf ./src && yarn openapi-generator-cli generate -i ./schema.json -g typescript-axios  -o ./src --skip-validate-spec --additional-properties=withSeparateModelsAndApi=true,modelPackage=models,apiPackage=api",
     "clean": "rimraf ./dist",
     "build": "npm run clean && rollup -c",
     "tsc": "tsc"
